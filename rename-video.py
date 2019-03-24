@@ -11,7 +11,7 @@ import argparse
 VIDEO_END_LIST = ['.avi', '.MOV', '.mp4', '.MP4']
 
 
-parser = argparse.ArgumentParser(description="default: rename for video_file")
+parser = argparse.ArgumentParser(description="default: rename for video_file, env requires: python3 on windows/macOS")
 parser.add_argument('--input', '-i', help='input file or dir')
 parser.add_argument('--isDir', '-d', action='store_true', help='rename for video_dir') 
 parser.add_argument('--ext_str', '-s', default=None, help='ext string in new_name')
@@ -22,8 +22,8 @@ def process_file(video_file, ext_str=None):
     ### video_path, video_file, video_ext
     video_path, video_name = os.path.split(video_file)
     video_name, video_ext = os.path.splitext(video_name)
-    if video_ext not in VIDEO_END_LIST:
-        raise IOError, "This is not a video file. input: [{}]".format(video_file)
+    if (video_ext not in VIDEO_END_LIST) or (video_name.startswith('.')):
+        raise IOError("This is not a video file. input: [{}]".format(video_file))
     ### begin process
     print("[{}] rename begin...".format(video_file), file=sys.stderr)
     ### modify time
@@ -52,7 +52,7 @@ def process_batch(video_dir, ext_str=None):
     err_count = 0
     for video_name in os.listdir(video_dir):
         video_name, video_ext = os.path.splitext(video_name)
-        if video_ext not in VIDEO_END_LIST:
+        if (video_ext not in VIDEO_END_LIST) or (video_name.startswith('.')):
             continue
         count += 1
         video_file = os.path.join(video_dir, video_name+video_ext)

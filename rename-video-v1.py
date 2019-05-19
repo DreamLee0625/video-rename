@@ -8,7 +8,7 @@ import time
 import argparse
 
 
-VIDEO_END_LIST = ['.avi', '.MOV', '.mp4', '.MP4']
+VIDEO_END_LIST = ['.avi', '.MOV', '.mp4', '.MP4', '.MTS']
 
 
 parser = argparse.ArgumentParser(description="default: rename for video_file, env requires: python3 on windows/macOS")

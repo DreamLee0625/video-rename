@@ -20,7 +20,7 @@ for rename videos of one folder:
 ```
 python rename-video-v1.py -d -i video_dir [-s some_extern_string]
 ```
-And format conversion function is provided in V2 script:
+And format conversion function is provided in V2 script:  
 for rename and conversion one video:  
 ```
 python rename-video-v2.py -i video_path [-s some_extern_string] [-f new_format, such '.mp4']
